@@ -170,8 +170,7 @@ def train(
             load_in_8bit=False,
             torch_dtype=torch.bfloat16,
             device_map=device_map,
-            trust_remote_code=True,
-            attn_implementation="flash_attention_2",)
+            trust_remote_code=True,)
 
         tokenizer = AutoTokenizer.from_pretrained(base_model)
         bf16 = True
@@ -182,7 +181,7 @@ def train(
     pad = tokenizer.pad_token_id
     print("pre-trained model's BOS EOS and PAD token id:",bos,eos,pad," => It should be 1 2 None")
 
-    tokenizer.pad_token_id = 0  # unk. we want this to be different from the eos token
+    tokenizer.pad_token_id = 0 if pad is None else pad  # unk. we want this to be different from the eos token
     tokenizer.padding_side = "right"
 
     def tokenize(prompt, add_eos_token=True):

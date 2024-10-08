@@ -3,7 +3,7 @@
 set num_epochs = $1
 set model = $2
 set val_num_samples = $3
-# set master_port = $4
+set master_port = $4
 
 if ($val_num_samples == "1k") then
     set num_val = 1000
@@ -25,6 +25,13 @@ else if ($model == "Llama-2-7B-chat") then
     set base_model = "meta-llama/Llama-2-7b-chat-hf"
     set lora_target_modules = '[q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj, lm_head]'
     set prompt_template_name = alpaca
+    
+else if ($model == "SmolLM-1.7B-Instruct") then
+    set base_model = "HuggingFaceTB/SmolLM-1.7B-Instruct"
+    set lora_target_modules = '[q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj, lm_head]'
+    set prompt_template_name = chatML
+    echo $base_model
+
 else if ($model == "Mistral-7B-Instruct-v0.2") then
     set base_model = "mistralai/Mistral-7B-Instruct-v0.2"
     set lora_target_modules = '[q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj, lm_head]'
@@ -44,9 +51,9 @@ else
 endif
 
 #uncomment the following code to apply multi-gpu training
-# echo $master_port
-#setenv CUDA_VISIBLE_DEVICES "0,1"
-#accelerate launch --main_process_port $master_port finetune.py\
+echo $master_port
+setenv CUDA_VISIBLE_DEVICES "0,1"
+accelerate launch --main_process_port $master_port finetune.py\
 
 ## argment for loading from google drive
 # --data-path ECInstruct/ECInstruct/Diverse_Instruction/train.json \
@@ -72,3 +79,8 @@ python finetune.py \
     --lr_scheduler 'cosine' \
     --optim "adamw_torch" \
     --warmup_ratio 0.05 \
+    --wandb_project "smolLM_EC" \
+    --wandb_run_name "test" \
+    --wandb_watch "true" \
+    --wandb_log_model "false" \
+    --output_dir "/pscratch/sd/r/ritesh11/temp/smolLM" \
