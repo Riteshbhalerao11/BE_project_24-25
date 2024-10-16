@@ -24,7 +24,7 @@ def main(
         if data["split"] == "test" and data["task"] == task and data["setting"] == setting:
             label_list.append(data["output"])
 
-    prediction_path = f'evaluation/{task}/{setting}.json'
+    prediction_path = f'inference_results/SmolLM-1.7B/{task}/{setting}.json'
     prediction_list = json.load(open(prediction_path, 'r'))
     
     #evaluation for extraction tasks
@@ -236,7 +236,7 @@ def main(
         score_mapping = {'E': 1.0, 'S': 0.1, 'C': 0.01, 'I': 0}
         label2score = {}
 
-        option_labels_list = json.load(open('ECInstruct/Query_Product_Ranking/IND_Diverse_Instruction/label.json', 'r'))
+        option_labels_list = json.load(open('data_label/label.json', 'r'))
         counter = 0
         for option_labels in option_labels_list:
             label2score[counter] = {}
