@@ -1,5 +1,9 @@
 #!/bin/tcsh
 
+
+nvidia-smi
+
+
 set num_epochs = $1
 set model = $2
 set val_num_samples = $3
@@ -53,16 +57,16 @@ endif
 #uncomment the following code to apply multi-gpu training
 echo $master_port
 setenv CUDA_VISIBLE_DEVICES "0,1"
-accelerate launch --main_process_port $master_port finetune.py\
+# accelerate launch --main_process_port $master_port finetune.py\
 
 ## argment for loading from google drive
 # --data-path ECInstruct/ECInstruct/Diverse_Instruction/train.json \
 # --dev-data-path ECInstruct/ECInstruct/Diverse_Instruction/val.json \
 
-python finetune.py \
+accelerate launch --main_process_port $master_port  finetune.py \
     --base_model $base_model \
     --output_dir eCeLLM \
-    --batch_size 128 \
+    --batch_size 64 \
     --micro_batch_size 1 \
     --num_epochs $num_epochs \
     --cutoff_len 2048 \
@@ -80,7 +84,8 @@ python finetune.py \
     --optim "adamw_torch" \
     --warmup_ratio 0.05 \
     --wandb_project "smolLM_EC" \
-    --wandb_run_name "test" \
+    --wandb_run_name "1.7B_64x2" \
     --wandb_watch "true" \
     --wandb_log_model "false" \
-    --output_dir "/pscratch/sd/r/ritesh11/temp/smolLM" \
+    --output_dir "/kaggle/working/smolLM_128" \
+

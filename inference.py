@@ -34,9 +34,15 @@ def main(
     output_data_path: str = ""
 
 ):
+    print(locals())
     base_model = base_model or os.environ.get("BASE_MODEL", "")
     prompter = Prompter(prompt_template)
     tokenizer = AutoTokenizer.from_pretrained(base_model)
+    directory = os.path.dirname(output_data_path)
+
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+        
     if device == "cuda":
 
         if base_model != 'microsoft/phi-2':
@@ -46,7 +52,6 @@ def main(
                 torch_dtype=torch.bfloat16,
                 device_map="auto",
                 trust_remote_code=True,
-                attn_implementation='flash_attention_2',
             )
         else:
             model = AutoModelForCausalLM.from_pretrained(
@@ -73,11 +78,12 @@ def main(
 
     if not model.config.eos_token_id:
         tokenizer.pad_token_id = tokenizer.eos_token_id
-        tokenizer.padding_side = 'left'
         model.config.eos_token_id = tokenizer.eos_token_id
-    else:
+        
+    elif not model.config.pad_token_id:
         tokenizer.pad_token_id = model.config.eos_token_id
-        tokenizer.padding_side = 'left'
+    
+    tokenizer.padding_side = 'left'
 
     pipe = pipeline(
         "text-generation", 
@@ -116,7 +122,7 @@ def main(
             
         results.extend(batch_results)
         print(f"Finished processing batch {i // max_batch_size + 1}. Time taken: {time.time() - start_time:.2f} seconds")
-
+    
     with open(output_data_path, 'w') as f:
         json.dump(results, f)
 

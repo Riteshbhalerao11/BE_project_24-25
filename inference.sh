@@ -18,6 +18,11 @@ else if ($model == "Llama-2-7B-chat") then
 else if ($model == "Mistral-7B-Instruct-v0.2") then
     set base_model = "mistralai/Mistral-7B-Instruct-v0.2"
     set prompt_template_name = mistral
+
+else if ($model == "SmolLM-1.7B-Instruct") then
+    set base_model = "HuggingFaceTB/SmolLM-1.7B-Instruct"
+    set prompt_template_name = chatML
+
 else if ($model == "Flan-T5-XL") then
     set base_model = "google/flan-t5-xl"
     set prompt_template_name = alpaca
