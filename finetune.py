@@ -150,30 +150,16 @@ def train(
         os.environ["WANDB_WATCH"] = wandb_watch
     if len(wandb_log_model) > 0:
         os.environ["WANDB_LOG_MODEL"] = wandb_log_model
-
-    if base_model == 'microsoft/phi-2':
-
-        model = AutoModelForCausalLM.from_pretrained(
-            base_model,
-            load_in_8bit=False,
-            torch_dtype=torch.bfloat16,
-            device_map=device_map,
-            trust_remote_code=True,)
-
-        tokenizer = AutoTokenizer.from_pretrained(base_model)
-        bf16 = False
     
-    else:
-        
-        model = AutoModelForCausalLM.from_pretrained(
-            base_model,
-            load_in_8bit=False,
-            torch_dtype=torch.bfloat16,
-            device_map=device_map,
-            trust_remote_code=True,)
+    model = AutoModelForCausalLM.from_pretrained(
+        base_model,
+        load_in_8bit=False,
+        torch_dtype=torch.bfloat16,
+        device_map=device_map,
+        trust_remote_code=True,)
 
-        tokenizer = AutoTokenizer.from_pretrained(base_model)
-        bf16 = True
+    tokenizer = AutoTokenizer.from_pretrained(base_model)
+    bf16 = True
 
     
     bos = tokenizer.bos_token_id

@@ -36,6 +36,18 @@ else if ($model == "SmolLM-1.7B-Instruct") then
     set prompt_template_name = chatML
     echo $base_model
 
+else if ($model == "SmolLM2-1.7B-Instruct") then
+    set base_model = "HuggingFaceTB/SmolLM2-1.7B-Instruct"
+    set lora_target_modules = '[q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj, lm_head]'
+    set prompt_template_name = chatML
+    echo $base_model
+
+else if ($model == "SmolLM2-360M-Instruct") then
+    set base_model = "HuggingFaceTB/SmolLM2-360M-Instruct"
+    set lora_target_modules = '[q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj, lm_head]'
+    set prompt_template_name = chatML
+    echo $base_model
+
 else if ($model == "Mistral-7B-Instruct-v0.2") then
     set base_model = "mistralai/Mistral-7B-Instruct-v0.2"
     set lora_target_modules = '[q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj, lm_head]'
@@ -55,15 +67,15 @@ else
 endif
 
 #uncomment the following code to apply multi-gpu training
-echo $master_port
-setenv CUDA_VISIBLE_DEVICES "0,1"
+# echo $master_port
+# setenv CUDA_VISIBLE_DEVICES "0,1"
 # accelerate launch --main_process_port $master_port finetune.py\
 
 ## argment for loading from google drive
 # --data-path ECInstruct/ECInstruct/Diverse_Instruction/train.json \
 # --dev-data-path ECInstruct/ECInstruct/Diverse_Instruction/val.json \
 
-accelerate launch --main_process_port $master_port  finetune.py \
+python finetune.py \
     --base_model $base_model \
     --output_dir eCeLLM \
     --batch_size 64 \
@@ -84,7 +96,7 @@ accelerate launch --main_process_port $master_port  finetune.py \
     --optim "adamw_torch" \
     --warmup_ratio 0.05 \
     --wandb_project "smolLM_EC" \
-    --wandb_run_name "1.7B_64x2" \
+    --wandb_run_name "360M_64x1" \
     --wandb_watch "true" \
     --wandb_log_model "false" \
     --output_dir "/kaggle/working/smolLM_128" \
