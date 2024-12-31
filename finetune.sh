@@ -48,6 +48,18 @@ else if ($model == "SmolLM2-360M-Instruct") then
     set prompt_template_name = chatML
     echo $base_model
 
+else if ($model == "Llama-3.2-1B-Instruct") then
+    set base_model = "meta-llama/Llama-3.2-1B-Instruct"
+    set lora_target_modules = '[q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj, lm_head]'
+    set prompt_template_name = Llama
+    echo $base_model
+
+else if ($model == "Llama-3.2-3B-Instruct") then
+    set base_model = "meta-llama/Llama-3.2-3B-Instruct"
+    set lora_target_modules = '[q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj, lm_head]'
+    set prompt_template_name = Llama
+    echo $base_model
+
 else if ($model == "Mistral-7B-Instruct-v0.2") then
     set base_model = "mistralai/Mistral-7B-Instruct-v0.2"
     set lora_target_modules = '[q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj, lm_head]'
@@ -99,5 +111,5 @@ python finetune.py \
     --wandb_run_name "360M_64x1" \
     --wandb_watch "true" \
     --wandb_log_model "false" \
-    --output_dir "/kaggle/working/smolLM_128" \
+    --output_dir "" \
 

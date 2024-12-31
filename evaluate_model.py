@@ -7,6 +7,7 @@ from datasets import load_dataset
 
 def main(
     label_path: str = "test.json",
+    model_name: str= "",
     task: str = "",
     setting: str = "",
 ):
@@ -24,7 +25,7 @@ def main(
         if data["split"] == "test" and data["task"] == task and data["setting"] == setting:
             label_list.append(data["output"])
 
-    prediction_path = f'inference_results/SmolLM-1.7B/{task}/{setting}.json'
+    prediction_path = f'inference_results/{model_name}/{task}/{setting}.json'
     prediction_list = json.load(open(prediction_path, 'r'))
     
     #evaluation for extraction tasks

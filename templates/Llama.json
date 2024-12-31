@@ -1,0 +1,6 @@
+{
+    "description": "Template used by Llama",
+    "prompt_input": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\nBelow is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.\n\n### Instruction:\n{instruction}\n\n### Input:\n{input}\n\n### Options:\n{options}<|eot_id|>\n\n### Response:\n",
+    "prompt_no_options": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\nBelow is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.\n\n### Instruction:\n{instruction}\n\n### Input:\n{input}\n\n<|eot_id|>\n\n### Response:\n",
+    "response_split": "<|eot_id|>\n\n### Response:\n"    
+}
