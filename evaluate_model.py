@@ -28,7 +28,8 @@ def eval(
 
     prediction_path = f'inference_results/{model_name}/{task}/{setting}.json'
     prediction_list = json.load(open(prediction_path, 'r'))
-    
+    if not prediction_list:
+        print(f"Inference for {task}_{setting} doesn't exist")
     #evaluation for extraction tasks
     if (task == 'Attribute_Value_Extraction'):
 
