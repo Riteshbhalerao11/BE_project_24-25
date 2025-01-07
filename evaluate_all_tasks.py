@@ -26,4 +26,5 @@ if __name__ == "__main__":
         for setting in setting_list:
             for domain in domains:
                 setting_full = f"{domain}_{setting}_Instruction"
+                print(f"{task}_{setting_full}")
                 eval(dataset, "", "smolLM2-1.7B", task, setting_full)
