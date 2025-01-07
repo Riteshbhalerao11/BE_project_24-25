@@ -16,11 +16,11 @@ tasks = [
 ]
 
 
-prompt_styles = ["Single", "Diverse"]
+setting_list = ["Single", "Diverse"]
 domains = ["IND", "OOD"]
 
 for task in tasks:
-    for prompt_style in prompt_styles:
+    for setting in setting_list:
         for domain in domains:
             setting = f"{domain}_{prompt_style}_Instruction"
             eval(dataset, "", task, setting)
