@@ -23,5 +23,5 @@ domains = ["IND", "OOD"]
 for task in tasks:
     for setting in setting_list:
         for domain in domains:
-            setting = f"{domain}_{prompt_style}_Instruction"
-            eval(dataset, "", task, setting)
+            setting_full = f"{domain}_{setting}_Instruction"
+            eval(dataset, "", task, setting_full)
