@@ -1,5 +1,6 @@
 from evaluate_model import eval
 from datasets import load_dataset
+import argparse
 
 dataset = load_dataset("NingLab/ECInstruct")["train"]
 
@@ -20,8 +21,9 @@ tasks = [
 setting_list = ["Single", "Diverse"]
 domains = ["IND", "OOD"]
 
-for task in tasks:
-    for setting in setting_list:
-        for domain in domains:
-            setting_full = f"{domain}_{setting}_Instruction"
-            eval(dataset, "", task, setting_full)
+if __name__ = "__main__":
+    for task in tasks:
+        for setting in setting_list:
+            for domain in domains:
+                setting_full = f"{domain}_{setting}_Instruction"
+                eval(dataset, "", "smolLM2-1.7B", task, setting_full)
