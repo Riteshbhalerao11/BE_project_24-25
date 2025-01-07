@@ -1,4 +1,5 @@
 from .evaluate_model import eval
+from datasets import load_dataset
 
 dataset = load_dataset("NingLab/ECInstruct")["train"]
 
