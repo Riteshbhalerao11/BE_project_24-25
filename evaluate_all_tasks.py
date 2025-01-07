@@ -21,7 +21,7 @@ tasks = [
 setting_list = ["Single", "Diverse"]
 domains = ["IND", "OOD"]
 
-if __name__ = "__main__":
+if __name__ == "__main__":
     for task in tasks:
         for setting in setting_list:
             for domain in domains:
