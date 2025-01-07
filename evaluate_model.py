@@ -151,7 +151,7 @@ def eval(
     #evaluation for multi-class classification tasks
     elif (task == 'Multiclass_Product_Classification') \
         or (task == 'Sentiment_Analysis') \
-        or (task == 'Product_Relation_Predicition'):
+        or (task == 'Product_Relation_Prediction'):
 
         skipped = 0
         filtered_prediction_list = []
@@ -417,7 +417,7 @@ def main(
     #evaluation for multi-class classification tasks
     elif (task == 'Multiclass_Product_Classification') \
         or (task == 'Sentiment_Analysis') \
-        or (task == 'Product_Relation_Predicition'):
+        or (task == 'Product_Relation_Prediction'):
 
         skipped = 0
         filtered_prediction_list = []
