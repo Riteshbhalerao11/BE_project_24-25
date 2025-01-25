@@ -5,7 +5,9 @@ import pdb
 import re
 from datasets import load_dataset
 
-def main(
+
+def eval(
+    dataset,
     label_path: str = "test.json",
     model_name: str= "",
     task: str = "",
@@ -19,15 +21,18 @@ def main(
     #     label_list[i] = label_list[i]['output']
 
     # load from huggingface
-    dataset = load_dataset("NingLab/ECInstruct")["train"]
+    prediction_path = f'inference_results/{model_name}/{task}/{setting}.json'
+    prediction_list = json.load(open(prediction_path, 'r'))
+    if not prediction_list:
+        print(f"Inference for {task}_{setting} doesn't exist")
+        return
+
+
     label_list = []
     for data in dataset:
         if data["split"] == "test" and data["task"] == task and data["setting"] == setting:
             label_list.append(data["output"])
 
-    prediction_path = f'inference_results/{model_name}/{task}/{setting}.json'
-    prediction_list = json.load(open(prediction_path, 'r'))
-    
     #evaluation for extraction tasks
     if (task == 'Attribute_Value_Extraction'):
 
@@ -101,7 +106,7 @@ def main(
     
     #evaluation for binary classification tasks
     elif (task == 'Answerability_Prediction') \
-        or (task == 'Product_Substitue_Identification') \
+        or (task == 'Product_Substitute_Identification') \
         or (task == 'Product_Matching'):
         skipped = 0
         filtered_prediction_list = []
@@ -150,7 +155,7 @@ def main(
     #evaluation for multi-class classification tasks
     elif (task == 'Multiclass_Product_Classification') \
         or (task == 'Sentiment_Analysis') \
-        or (task == 'Product_Relation_Predicition'):
+        or (task == 'Product_Relation_Prediction'):
 
         skipped = 0
         filtered_prediction_list = []
@@ -224,7 +229,7 @@ def main(
         print('{"recall": %.3f, "precision": %.3f, "f1": %.3f, "bleurt": %.3f, "#invalid": %d}' % (bert_score['recall'], bert_score['precision'], bert_score['f1'], bleurt_score, num_skipped))
     
     #evaluation for ranking tasks
-    elif (task == 'Query_Product_Ranking'):
+    elif (task == 'Query_Product_Rank'):
         import numpy as np
 
         def DCG(score_list):
@@ -267,6 +272,26 @@ def main(
         
         avg_ndcg = total_ndcg / len(label_list)
         print('{"NDCG": %.3f, "#invalid": %d}' % (avg_ndcg, skipped))
+
+
+
+
+def main(
+    label_path: str = "test.json",
+    model_name: str= "",
+    task: str = "",
+    setting: str = "",
+):
+    
+    ## load from google drive
+    # PATH = f'ECInstruct/{task}/{setting}'
+    # label_list = json.load(open(f'{PATH}/{label_path}', 'r'))
+    # for i in range(len(label_list)):
+    #     label_list[i] = label_list[i]['output']
+
+    # load from huggingface
+    dataset = load_dataset("NingLab/ECInstruct")["train"]
+    eval(dataset, "", model_name, task, setting)
 
 if __name__ == '__main__':
     fire.Fire(main)
