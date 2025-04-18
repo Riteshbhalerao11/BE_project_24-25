@@ -17,6 +17,8 @@ else
     set num_val = $val_num_samples
 endif 
 
+set finetune_script = "finetune.py"
+
 if ($model == "Flan-T5-XXL") then
     set base_model = "google/flan-t5-xxl"
     set lora_target_modules = '[q, k, v, o, wi_0, wi_1, wo, lm_head]'
@@ -64,6 +66,7 @@ else if ($model == "DeepSeek-R1-Distill-Qwen-1.5B") then
     set base_model = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
     set lora_target_modules = '[q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj, lm_head]'
     set prompt_template_name = qwen
+    set finetune_script = "finetune_reason.py"
     echo $base_model
 
 else if ($model == "Mistral-7B-Instruct-v0.2") then
@@ -94,7 +97,7 @@ endif
 # --data-path ECInstruct/ECInstruct/Diverse_Instruction/train.json \
 # --dev-data-path ECInstruct/ECInstruct/Diverse_Instruction/val.json \
 
-python finetune.py \
+python $finetune_script \
     --base_model $base_model \
     --output_dir "./" \
     --batch_size 64 \
