@@ -101,7 +101,3 @@ accelerate launch --main_process_port "$master_port" "$finetune_script" \
     --lr_scheduler 'cosine' \
     --optim "adamw_torch" \
     --warmup_ratio 0.05 \
-    --wandb_project "test" \
-    --wandb_run_name "test" \
-    --wandb_watch "true" \
-    --wandb_log_model "false"
