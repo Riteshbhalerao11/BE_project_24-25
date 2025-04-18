@@ -1,0 +1,242 @@
+{
+    "Q1": {
+        "prompt": "Output yes if the supporting document can answer the given question. Otherwise, output no.",
+        "reason": "Determine whether the supporting document can answer the given question. Provide the final answer in yes or no."
+    },
+    "Q2": {
+        "prompt": "Given a question and the related document, predict if the question is answerable based on the information provided in the document. Output only yes or no.",
+        "reason": "Given a question and the related document, predict if the question is answerable based on the information provided in the document."
+    },
+    "Q3": {
+        "prompt": "Evaluate the answerability of a question by analyzing the related document, outputting yes if the document contains information addressing the question, and no otherwise.",
+        "reason": "Evaluate the answerability of the question based on the related document. Justify your reasoning by referring to the relevant information in the document."
+    },
+    "Q4": {
+        "prompt": "Given a question and its related document, determine if the question is answerable by analyzing the information in the document. Output yes if the document addresses the question, or no otherwise.",
+        "reason": "Analyze whether the question is answerable based on the document. Support your conclusion by explaining how the document addresses or fails to address the question."
+    },
+    "Q5": {
+        "prompt": "Analyze a question and its supporting document. Predicting answerability based on the information provided in the document. Output yes if the document contains relevant information to answer the question, otherwise output no.",
+        "reason": "Assess the answerability of the question using the information in the document. Provide a rationale indicating whether the document includes relevant information to support an answer."
+    },
+    "Q6": {
+        "prompt": "Predict whether it is possible to answer the given question using the supporting document, and output a yes or no response.",
+        "reason": "Predict the answerability of the question with reference to the supporting document. Justify your decision based on the presence or absence of relevant information in the document."
+    },
+    "Q7": {
+        "prompt": "Generate an answer to the question by utilizing the information contained in the document.",
+        "reason": "Use the content of the document to construct an informative and relevant answer to the question."
+    },
+    "Q8": {
+        "prompt": "Answer the given question using the supporting document.",
+        "reason": "Read the supporting document and provide a relevant answer based on the information it contains."
+    },
+    "Q9": {
+        "prompt": "Given a question and the related document, and generate the answer to the question based on the information provided in the document.",
+        "reason": "Analyze the document for information related to the question and generate an appropriate answer."
+    },
+    "Q10": {
+        "prompt": "Answer the given question by extracting information from the supporting document.",
+        "reason": "Locate and extract relevant content from the document to formulate an answer to the question."
+    },
+    "Q11": {
+        "prompt": "Extract information from the supporting document to answer the given question.",
+        "reason": "Identify and retrieve specific information from the document that addresses the question."
+    },
+    "Q12": {
+        "prompt": "Utilize the information provided in the supporting document to generate an answer to the given question.",
+        "reason": "Interpret and synthesize the provided information in the document to generate a coherent answer to the question."
+    },
+    "Q13": {
+        "prompt": "Extract the value of the target attribute from the given product information and output it along with the corresponding source.",
+        "reason": "Identify the target attribute in the product information and report both the extracted value and its source location within the data."
+    },
+    "Q14": {
+        "prompt": "Given the title, description, feature, price, and brand of a product and a set of target attributes, extract the value of each target attribute from the product information. Output the extracted value and the corresponding source (e.g., title or feature) denoting where the value is extracted.",
+        "reason": "For each target attribute, locate its value within the product information and indicate the specific source where the value was found."
+    },
+    "Q15": {
+        "prompt": "Parse the product information to locate the target attribute, and then provide the extracted value of the target attribute and its source in the output, specifying None if the attribute is not present.",
+        "reason": "Search for the target attribute within the product fields, extract its value if present, and clearly identify the source or indicate None if not found."
+    },
+    "Q16": {
+        "prompt": "First, identify the target attributes from the provided list. Then, scan the product title, description, feature, and brand to extract the values associated with each target attribute. Finally, create a list of dictionaries, each containing the extracted attribute, its corresponding value, and the source where it was found.",
+        "reason": "Systematically identify and extract values for each target attribute from the product information, clearly stating the value and its source for each case."
+    },
+    "Q17": {
+        "prompt": "Using the product's title, description, features, price, and brand, identify and retrieve the values associated with a specified set of target attributes. Output the extracted values along with their respective sources (e.g., title or feature) indicating where each value was found.",
+        "reason": "Search through product metadata to extract values for the specified attributes, and indicate which product field each value was derived from."
+    },
+    "Q18": {
+        "prompt": "Retrieve the value associated with the target attribute from the product information and specify the source (e.g., title, description, feature, or title) where the value was found.",
+        "reason": "Find and extract the value of the given target attribute and indicate the exact part of the product information from which it was retrieved."
+    },
+    "Q19": {
+        "prompt": "What is the relevance between the query and the product title below? Answer from one of the options.",
+        "reason": "Assess the degree of relevance between the query and the product title and explain your reasoning based on textual similarity or semantic alignment."
+    },
+    "Q20": {
+        "prompt": "Analyze the query and product title to assess the level of relevance between them, and then output the corresponding option that best describes this relevance.",
+        "reason": "Evaluate how well the product title matches the intent of the query. Justify your assessment with evidence from both texts."
+    },
+    "Q21": {
+        "prompt": "Evaluate the relevance between the query and product title, and choose the most accurate option from the given options.",
+        "reason": "Assess how well the product title matches the intent of the query and explain the reasoning behind the selected option."
+    },
+    "Q22": {
+        "prompt": "Analyze the query and product title to determine the relevance between the query and product, and select the appropriate option from the provided options.",
+        "reason": "Examine the semantic and contextual alignment between the query and product title, and provide justification for your selected relevance level."
+    },
+    "Q23": {
+        "prompt": "Determine the relevance between the query and the product title provided, and select your response from one of the available options.",
+        "reason": "Evaluate the match between the product title and the query, and explain your rationale for choosing the most fitting relevance label."
+    },
+    "Q24": {
+        "prompt": "Compare the query and the product title to determine if the product fully meets the query specifications. Choose the option that best describes the relevance between them.",
+        "reason": "Analyze how closely the product title aligns with the query requirements, and justify your choice of relevance classification."
+    },
+    "Q25": {
+        "prompt": "Given the title, description, manufacturer, and price of two products, identify if they are the same product. Only output yes or no.",
+        "reason": "Compare the attributes of the two products and explain whether or not they represent the same item, based on similarities or differences."
+    },
+    "Q26": {
+        "prompt": "Analyze the title, description, manufacturer, and price between the two products below and generate an output of yes if the two products are the same, otherwise respond with no.",
+        "reason": "Evaluate the given product details to determine identity, and explain the basis for your conclusion."
+    },
+    "Q27": {
+        "prompt": "Check the details of the two products to see if they refer to the same product. Output only yes or no.",
+        "reason": "Identify overlapping features in the products to assess identity, and provide reasoning for your decision."
+    },
+    "Q28": {
+        "prompt": "Based on the product information, predict if the two products are identical or not. Output yes if they are identical or no otherwise.",
+        "reason": "Determine whether the two products represent the same entity and explain the reasoning behind your assessment."
+    },
+    "Q29": {
+        "prompt": "Compare the details of two given products to determine if they are identical. Output yes if they are identical or no otherwise.",
+        "reason": "Examine both products for matching features and provide justification for whether they are the same product."
+    },
+    "Q30": {
+        "prompt": "Determine whether the two products are the same by comparing their title, description, manufacturer, and price, and provide a simple yes or no answer as the output.",
+        "reason": "Assess the similarities and differences in the product details to support a determination of whether they are the same product."
+    },
+    "Q31": {
+        "prompt": "Analyze the titles of Product 1 and Product 2 to determine if they are similar, if they will be purchased or viewed together, and choose the corresponding option.",
+        "reason": "Evaluate the relationship between the product titles in terms of similarity or co-purchase behavior and explain your reasoning."
+    },
+    "Q32": {
+        "prompt": "Given the title of two products, predict if the two products are similar, if the two products will be purchased or viewed together. Answer only from the options.",
+        "reason": "Analyze the two product titles to assess their similarity or likelihood of co-viewing/purchasing and provide a justification for your response."
+    },
+    "Q33": {
+        "prompt": "Predict whether two products are similar, whether two products are likely to be purchased or viewed together based on their titles. Choose your answer from the provided options.",
+        "reason": "Determine the relationship between the products based on title similarity and potential consumer behavior, explaining your reasoning."
+    },
+    "Q34": {
+        "prompt": "Evaluate the titles of Product 1 and Product 2 to assess their similarity and whether they are likely to be purchased or viewed together. Then, select the appropriate option.",
+        "reason": "Examine the product titles to infer patterns of similarity or co-purchase potential, and justify your selected classification."
+    },
+    "Q35": {
+        "prompt": "Evaluate the titles of Product 1 and Product 2, then choose the option that best describes the relation between the two products.",
+        "reason": "Interpret the relationship between the products based on title semantics, and support your selected option with reasoning."
+    },
+    "Q36": {
+        "prompt": "Analyze the titles of Product 1 and Product 2 and select the option that indicates the relation of the two products.",
+        "reason": "Determine the connection or relation between the two product titles and explain the rationale behind your choice."
+    },
+    "Q37": {
+        "prompt": "Check if a product can function as a substitute for a given query, even if it doesn't fully meet all requirements. Output yes if it can or no otherwise.",
+        "reason": "Assess if the product partially satisfies the query and could act as a substitute. Justify your decision based on the product\u2019s capabilities."
+    },
+    "Q38": {
+        "prompt": "Given a query and a product, identify if the product is somewhat relevant to the query. It fails to fulfill some aspects of the query but the product can be used as a functional substitute. Only output yes or no.",
+        "reason": "Evaluate the product\u2019s potential to fulfill the user's intent despite not being a perfect match, and provide supporting evidence for your decision."
+    },
+    "Q39": {
+        "prompt": "Answer yes if the product is a substitute for the query and no otherwise.",
+        "reason": "Analyze whether the product can serve as a viable alternative to the original query, even if imperfect, and explain your answer."
+    },
+    "Q40": {
+        "prompt": "Assess the relevance of a product to a given query by determining if it can function as a substitute, despite not fully meeting certain aspects of the query. Provide a binary output of yes or no based on this evaluation.",
+        "reason": "Examine how well the product aligns with the query\u2019s intent and justify whether it can act as a substitute in practical use."
+    },
+    "Q41": {
+        "prompt": "Please respond with yes if the product is a suitable substitute for the query, and no if it is not.",
+        "reason": "Analyze the product's ability to fulfill the user's query and provide a rationale for whether it qualifies as a suitable substitute."
+    },
+    "Q42": {
+        "prompt": "Assess whether the product is a substitute for the query and provide a yes or no response.",
+        "reason": "Evaluate the degree to which the product addresses the user's needs and explain why it either qualifies or doesn't qualify as a substitute."
+    },
+    "Q43": {
+        "prompt": "Evaluate the relevance of each product title in the input to the given query, and then sort the products in descending order of relevance, placing the most relevant product at the top of the ranked list.",
+        "reason": "Review each product title and its alignment with the query, then rank them in order of relevance, justifying the ranking order."
+    },
+    "Q44": {
+        "prompt": "Analyze the query and each product title. Sort the products in descending order based on their relevance to the query. The most relevant product should be at the top of the list, and output the ranked list.",
+        "reason": "Assess how well each product matches the query and rank them accordingly, providing justification for the order based on relevance."
+    },
+    "Q45": {
+        "prompt": "Given a query and a list of products denoted as A, B, C, ... with their titles, rank the products according to their relevance to the query. Output only a ranked list in which the most relevant product is at the top of the list.",
+        "reason": "Analyze how well each product corresponds to the query and rank them from most to least relevant, ensuring the list reflects relevance order."
+    },
+    "Q46": {
+        "prompt": "Rank the products A, B, C, ... based on their relevance to the provided query, and produce a ranked list with the most relevant product positioned at the top of the list.",
+        "reason": "Determine the relevance of each product in relation to the query, and provide a ranked list starting with the most relevant product."
+    },
+    "Q47": {
+        "prompt": "Evaluate each product title in the given list, assess its relevance to the given query, and then arrange the products in descending order of relevance, with the most relevant product at the top of the ranked list.",
+        "reason": "Assess each product's relevance to the query and sort them accordingly, providing a justification for the ranking order."
+    },
+    "Q48": {
+        "prompt": "Evaluate the query against each product's title, determine the relevance between the query and the product, and organize the products in descending order of relevance, ensuring that the product with the highest relevance is positioned at the top of the list.",
+        "reason": "Examine the relationship between the query and each product title and rank them by relevance, ensuring the most relevant product is at the top."
+    },
+    "Q49": {
+        "prompt": "Given the user's review, identify the user's sentiment from the listed options. Answer using one of the options.",
+        "reason": "Analyze the review content and identify the sentiment expressed, providing an explanation for your selected sentiment."
+    },
+    "Q50": {
+        "prompt": "Assess the user's sentiment in the provided review and select the appropriate sentiment option from the list as the answer.",
+        "reason": "Carefully analyze the review and identify the sentiment expressed by the user, providing justification for your choice from the available options."
+    },
+    "Q51": {
+        "prompt": "Analyze the user's review text and determine the overall sentiment expressed, then choose the corresponding sentiment option from the provided list (A: very positive, B: positive, C: neutral, D: negative, E: very negative) based on the identified sentiment.",
+        "reason": "Examine the tone and language of the review to determine its overall sentiment, then explain the reasoning for selecting a sentiment option."
+    },
+    "Q52": {
+        "prompt": "Carefully assess the user's review for any strong expressions of sentiment, either positive or negative. Based on your analysis, select the most fitting sentiment option from the provided list as output.",
+        "reason": "Identify any strong emotional or evaluative language in the review, then provide a sentiment classification that best fits the content."
+    },
+    "Q53": {
+        "prompt": "Determine the sentiment expressed by the user in her review from the provided choices, and respond by selecting one of the available options.",
+        "reason": "Read and analyze the user's review to identify the sentiment expressed, then justify the selected sentiment based on the review content."
+    },
+    "Q54": {
+        "prompt": "Analyze the user's review and determine the sentiment based on the listed options.",
+        "reason": "Evaluate the review to determine the tone and sentiment, providing an explanation for why you chose the specific sentiment option."
+    },
+    "Q55": {
+        "prompt": "Given the products the user has purchased in history, rank the items in the listed options and output the item that the user is most likely to purchase next. Answer from one of the options.",
+        "reason": "Review the user's past purchases and predict which product they are most likely to purchase next, providing a rationale for the prediction."
+    },
+    "Q56": {
+        "prompt": "The user's purchase history implies her preferences. Rank the items in the options based on the user's preferences. Output the item that the user is most likely to purchase next from the options.",
+        "reason": "Examine the user's past purchase patterns to determine their preferences, then rank the products based on how well they align with these preferences."
+    },
+    "Q57": {
+        "prompt": "Based on the user's historical purchases, rank the items in options and predict the next product of the user's interest from the provided options.",
+        "reason": "Use the user's purchase history to predict the most likely next product, ranking the options based on relevance to their preferences."
+    },
+    "Q58": {
+        "prompt": "Rank the items in options and predict the user's next purchase from the listed options by analyzing her historical purchases.",
+        "reason": "Rank the items based on the user's previous purchase trends, identifying the most likely next purchase and justifying the ranking order."
+    },
+    "Q59": {
+        "prompt": "Rank items in listed options based on the user's purchase history to determine the item that the user is most likely to purchase next. Output the item with the highest likelihood of being the next purchase.",
+        "reason": "Analyze the user's purchase history and rank the items according to their likelihood of being the next purchase, explaining the reasoning behind the ranking."
+    },
+    "Q60": {
+        "prompt": "Estimate the user's intent based on the user's purchase history, and predict the next product that the user is most likely to purchase from the given options.",
+        "reason": "Evaluate the user's past purchase behavior to forecast their next purchase and explain the reasoning behind this prediction."
+    }
+}
