@@ -92,6 +92,30 @@ endif
 echo $master_port
 setenv CUDA_VISIBLE_DEVICES "0,1,2,3"
 accelerate launch --main_process_port $master_port $finetune_script\
+    --base_model $base_model \
+    --output_dir "./" \
+    --batch_size 48 \
+    --micro_batch_size 1 \
+    --num_epochs $num_epochs \
+    --cutoff_len 4000 \
+    --val_set_size $num_val \
+    --learning_rate 1e-4 \
+    --lora_r 16 \
+    --lora_alpha 16 \
+    --lora_dropout 0.10 \
+    --lora_target_modules "$lora_target_modules" \
+    --train_on_inputs False \
+    --add_eos_token False \
+    --group_by_length False \
+    --prompt_template_name $prompt_template_name \
+    --lr_scheduler 'cosine' \
+    --optim "adamw_torch" \
+    --warmup_ratio 0.05 \
+    --wandb_project "test" \
+    --wandb_run_name "test" \
+    --wandb_watch "true" \
+    --wandb_log_model "false" \
+
 
 
 
