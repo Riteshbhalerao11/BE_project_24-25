@@ -241,6 +241,7 @@ def train(
     dataset = pd.DataFrame(load_dataset("/kaggle/working/EC-Reason")['train'])
 
     data = dataset[(dataset["split"] == "train") & (dataset["setting"] == "IND_Diverse_Instruction")].drop(["split", "setting", "few_shot_example", "task", "instruction", "output"], axis=1)
+    data = data[:100]
     data = Dataset(pa.Table.from_pandas(data))
 
     dev_data = dataset[(dataset["split"] == "val") & (dataset["setting"] == "IND_Diverse_Instruction")].drop(["split", "setting", "few_shot_example", "task", "instruction","output"], axis=1)
