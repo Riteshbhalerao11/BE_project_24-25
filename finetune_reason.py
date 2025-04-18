@@ -140,16 +140,17 @@ def train(
         print("gradient_accumulation_steps: ", gradient_accumulation_steps)
 
     # Check if parameter passed or if set within environ
-    use_wandb = len(wandb_project) > 0 or (
-        "WANDB_PROJECT" in os.environ and len(os.environ["WANDB_PROJECT"]) > 0
-    )
-    # Only overwrite environ if wandb param passed
-    if len(wandb_project) > 0:
-        os.environ["WANDB_PROJECT"] = wandb_project
-    if len(wandb_watch) > 0:
-        os.environ["WANDB_WATCH"] = wandb_watch
-    if len(wandb_log_model) > 0:
-        os.environ["WANDB_LOG_MODEL"] = wandb_log_model
+    use_wandb = False
+    # use_wandb = len(wandb_project) > 0 or (
+    #     "WANDB_PROJECT" in os.environ and len(os.environ["WANDB_PROJECT"]) > 0
+    # )
+    # # Only overwrite environ if wandb param passed
+    # if len(wandb_project) > 0:
+    #     os.environ["WANDB_PROJECT"] = wandb_project
+    # if len(wandb_watch) > 0:
+    #     os.environ["WANDB_WATCH"] = wandb_watch
+    # if len(wandb_log_model) > 0:
+    #     os.environ["WANDB_LOG_MODEL"] = wandb_log_model
     
     model = AutoModelForCausalLM.from_pretrained(
         base_model,
@@ -285,8 +286,8 @@ def train(
             load_best_model_at_end=True if val_set_size > 0 else False,
             ddp_find_unused_parameters=False if ddp else None,
             group_by_length=group_by_length,
-            report_to="wandb" if use_wandb else None,
-            run_name=wandb_run_name if use_wandb else None,
+            report_to=None,
+            run_name=None,
         ),
         data_collator=transformers.DataCollatorForSeq2Seq(
             tokenizer, pad_to_multiple_of=8, return_tensors="pt", padding=True
