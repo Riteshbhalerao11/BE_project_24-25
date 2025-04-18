@@ -165,7 +165,7 @@ def train(
     bos = tokenizer.bos_token_id
     eos = tokenizer.eos_token_id
     pad = tokenizer.pad_token_id
-    print("pre-trained model's BOS EOS and PAD token id:",bos,eos,pad,"")
+    print("pre-trained model's BOS EOS and PAD token id:",bos,eos,pad)
 
     tokenizer.pad_token_id = 0 if pad is None else pad  # unk. we want this to be different from the eos token
     tokenizer.padding_side = "right"
@@ -196,16 +196,16 @@ def train(
             data_point["options"] = None
 
         full_prompt = prompter.generate_prompt(
-            data_point["instruction"],
+            data_point["reason_instruction"],
             data_point["input"],
             data_point["options"],
-            data_point["output"], 
+            data_point["generation"], 
             )
 
         tokenized_full_prompt = tokenize(full_prompt)
         if not train_on_inputs:
             user_prompt = prompter.generate_prompt(
-                data_point["instruction"], 
+                data_point["reason_instruction"], 
                 data_point["input"], 
                 data_point["options"],)
             
@@ -237,45 +237,14 @@ def train(
     model = get_peft_model(model, config)
 
     # load from huggingface
-    dataset = pd.DataFrame(load_dataset("NingLab/ECInstruct")['train'])
+    dataset = pd.DataFrame(load_dataset("Bhalewow/EC-Reason")['train'])
 
-    data = dataset[(dataset["split"] == "train") & (dataset["setting"] == "IND_Diverse_Instruction")].drop(["split", "setting", "few_shot_example", "task"], axis=1)
+    data = dataset[(dataset["split"] == "train") & (dataset["setting"] == "IND_Diverse_Instruction")].drop(["split", "setting", "few_shot_example", "task", "instruction", "output"], axis=1)
     data = Dataset(pa.Table.from_pandas(data))
 
-    dev_data = dataset[(dataset["split"] == "val") & (dataset["setting"] == "IND_Diverse_Instruction")].drop(["split", "setting", "few_shot_example", "task"], axis=1)
+    dev_data = dataset[(dataset["split"] == "val") & (dataset["setting"] == "IND_Diverse_Instruction")].drop(["split", "setting", "few_shot_example", "task", "instruction","output"], axis=1)
     dev_data = Dataset(pa.Table.from_pandas(dev_data))
     
-    ## load from google drive
-    # if data_path.endswith(".json") or data_path.endswith(".jsonl"):
-    #     data = load_dataset("json", data_files=data_path)
-    # else:
-    #     data = load_dataset(data_path)
-    #data.cleanup_cache_files()
-    
-    # if dev_data_path.endswith(".json") or dev_data_path.endswith(".jsonl"):
-    #     dev_data = load_dataset("json", data_files=dev_data_path)
-    # else:
-    #     dev_data = load_dataset(dev_data_path)
-
-    # if resume_from_checkpoint:
-    #     # Check the available weights and load them
-    #     checkpoint_name = os.path.join(
-    #         resume_from_checkpoint, "pytorch_model.bin"
-    #     )  # Full checkpoint
-    #     if not os.path.exists(checkpoint_name):
-    #         checkpoint_name = os.path.join(
-    #             resume_from_checkpoint, "adapter_model.bin"
-    #         )  # only LoRA model - LoRA config above has to fit
-    #         resume_from_checkpoint = (
-    #             False  # So the trainer won't try loading its state
-    #         )
-    #     # The two files above have a different name depending on how they were saved, but are actually the same.
-    #     if os.path.exists(checkpoint_name):
-    #         print(f"Restarting from {checkpoint_name}")
-    #         adapters_weights = torch.load(checkpoint_name)
-    #         set_peft_model_state_dict(model, adapters_weights)
-    #     else:
-    #         print(f"Checkpoint {checkpoint_name} not found")
 
     model.print_trainable_parameters()
 

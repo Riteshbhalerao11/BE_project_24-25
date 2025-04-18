@@ -60,10 +60,17 @@ else if ($model == "Llama-3.2-3B-Instruct") then
     set prompt_template_name = Llama
     echo $base_model
 
+else if ($model == "DeepSeek-R1-Distill-Qwen-1.5B") then
+    set base_model = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+    set lora_target_modules = '[q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj, lm_head]'
+    set prompt_template_name = qwen
+    echo $base_model
+
 else if ($model == "Mistral-7B-Instruct-v0.2") then
     set base_model = "mistralai/Mistral-7B-Instruct-v0.2"
     set lora_target_modules = '[q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj, lm_head]'
     set prompt_template_name = mistral
+
 else if ($model == "Flan-T5-XL") then
     set base_model = "google/flan-t5-xl"
     set lora_target_modules = '[q, k, v, o, wi_0, wi_1, wo, lm_head]'
@@ -89,11 +96,11 @@ endif
 
 python finetune.py \
     --base_model $base_model \
-    --output_dir eCeLLM \
+    --output_dir "./" \
     --batch_size 64 \
     --micro_batch_size 1 \
     --num_epochs $num_epochs \
-    --cutoff_len 2048 \
+    --cutoff_len 4000 \
     --val_set_size $num_val \
     --learning_rate 1e-4 \
     --lora_r 16 \
@@ -107,9 +114,8 @@ python finetune.py \
     --lr_scheduler 'cosine' \
     --optim "adamw_torch" \
     --warmup_ratio 0.05 \
-    --wandb_project "smolLM_EC" \
-    --wandb_run_name "360M_64x1" \
+    --wandb_project "test" \
+    --wandb_run_name "test" \
     --wandb_watch "true" \
     --wandb_log_model "false" \
-    --output_dir "" \
 
