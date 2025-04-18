@@ -277,7 +277,7 @@ def train(
             bf16=bf16, 
             logging_steps=1,
             optim=optim,
-            evaluation_strategy="epoch" if val_set_size > 0 else "no",
+            eval_strategy="epoch" if val_set_size > 0 else "no",
             save_strategy="epoch",
             lr_scheduler_type=lr_scheduler,
             output_dir=output_dir,
