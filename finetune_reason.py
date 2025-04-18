@@ -237,7 +237,7 @@ def train(
     model = get_peft_model(model, config)
 
     # load from huggingface
-    dataset = pd.DataFrame(load_dataset("Bhalewow/EC-Reason")['train'])
+    dataset = pd.DataFrame(load_dataset("/kaggle/working/EC-Reason")['train'])
 
     data = dataset[(dataset["split"] == "train") & (dataset["setting"] == "IND_Diverse_Instruction")].drop(["split", "setting", "few_shot_example", "task", "instruction", "output"], axis=1)
     data = Dataset(pa.Table.from_pandas(data))
