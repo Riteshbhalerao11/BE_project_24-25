@@ -63,7 +63,7 @@ else if ($model == "Llama-3.2-3B-Instruct") then
     echo $base_model
 
 else if ($model == "DeepSeek-R1-Distill-Qwen-1.5B") then
-    set base_model = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+    set base_model = "/kaggle/working/DeepSeek-R1-Distill-Qwen-1.5B"
     set lora_target_modules = '[q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj, lm_head]'
     set prompt_template_name = qwen
     set finetune_script = "finetune_reason.py"
