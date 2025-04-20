@@ -269,7 +269,7 @@ def train(
         eval_dataset=val_data,
         args=transformers.TrainingArguments(
             gradient_checkpointing=gradient_checkpointing,
-            deepspeed="deepspped_config.json",
+            # deepspeed="deepspped_config.json",
             per_device_train_batch_size=micro_batch_size,
             gradient_accumulation_steps=gradient_accumulation_steps,
             warmup_ratio=warmup_ratio,

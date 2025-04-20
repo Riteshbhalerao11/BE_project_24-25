@@ -95,7 +95,8 @@ fi
 # export CUDA_VISIBLE_DEVICES="0,1"
 # accelerate launch --main_process_port $master_port finetune.py \
 
-python "$finetune_script" \
+deepspeed "$finetune_script" \
+    --deepspeed deepspeed_config.json \
     --base_model "$base_model" \
     --output_dir "./" \
     --batch_size 64 \
