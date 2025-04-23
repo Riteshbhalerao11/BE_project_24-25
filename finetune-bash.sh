@@ -115,4 +115,4 @@ deepspeed "$finetune_script" \
     --prompt_template_name "$prompt_template_name" \
     --lr_scheduler 'cosine' \
     --optim "adamw_torch" \
-    --warmup_ratio 0.05 \
+    --warmup_ratio 0.05
