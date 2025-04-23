@@ -1,6 +1,7 @@
 from pathlib import Path
 import re
 import json
+import os
 pattern = r"\\boxed\{(.*?)\}"
 
 def extract_boxed_escaped_string(text):
@@ -24,15 +25,15 @@ def transform_path(path):
     # Reconstruct the path
     return Path(*parts)
 
-all_files = list(Path("D:\VESIT\FOURTHYEAR\MajorProject\BE_project_24-25\inference_results\qwen_reasoning_raw").rglob("*.*"))
+all_files = list(Path("/content/BE_project_24-25/inference_results/qwen_reasoning_raw").rglob("*.*"))
 
-for file in all_files:
+for my_file in all_files:
     eval_output = []
-    reasoning_outputs = json.load(open(prediction_path, 'r'))
+    reasoning_outputs = json.load(open(my_file, 'r'))
     for output in reasoning_outputs:
         eval_output.append(extract_boxed_escaped_string(output))
     
-    save_path = transform_path(file)
+    save_path = transform_path(my_file)
     os.makedirs(save_path.parent, exist_ok=True)
     with open(save_path, 'w') as f:
-        json.dump(updated_rows, f, indent=2)
+        json.dump(eval_output, f, indent=2)
