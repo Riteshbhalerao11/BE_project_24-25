@@ -2,7 +2,7 @@ from evaluate_model import eval
 from datasets import load_dataset
 import argparse
 
-dataset = load_dataset("NingLab/ECInstruct")["train"]
+dataset = load_dataset("Bhalewow/EC-Reason")["train"]
 
 tasks = [
     "Answerability_Prediction",
